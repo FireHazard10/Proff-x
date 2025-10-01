@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Joy Aluminum Center</title>
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --primary: #1f6feb; /* refined steel-blue */
+        --primary-600: #1a60cf;
+        --bg: #0b0f19; /* deep charcoal */
+        --card: #0f1524; /* card background */
+        --muted: #9198ab; /* muted text */
+        --text: #e6e9f2; /* main text */
+        --accent: #22c55e; /* success accent */
+        --danger: #ef4444;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        --radius: 16px;
+        --container: 1200px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background: radial-gradient(
+            1200px 600px at 80% -10%,
+            rgba(31, 111, 235, 0.18),
+            transparent
+          ),
+          radial-gradient(
+            900px 500px at -10% 10%,
+            rgba(34, 197, 94, 0.14),
+            transparent
+          ),
+          var(--bg);
+        color: var(--text);
+        font: 16px/1.6 "Inter", system-ui, -apple-system, Segoe UI, Roboto,
+          Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+      }
+
+      /* Utilities */
+      .container {
+        width: min(100% - 2rem, var(--container));
+        margin-inline: auto;
+      }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: linear-gradient(180deg, var(--primary), var(--primary-600));
+        color: #fff;
+        border: 0;
+        padding: 0.9rem 1.2rem;
+        border-radius: 999px;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+        text-decoration: none;
+        box-shadow: var(--shadow);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+        will-change: transform;
+      }
+      .button:focus-visible {
+        outline: 3px solid #93c5fd;
+        outline-offset: 2px;
+      }
+      .button:hover {
+        transform: translateY(-1px);
+      }
+
+      /* Header */
+      header.site-header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        backdrop-filter: saturate(120%) blur(8px);
+      }
+      .nav-wrap {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(11, 15, 25, 0.6);
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.9rem 0;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        text-decoration: none;
+        color: var(--text);
+      }
+      .logo {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: conic-gradient(
+          from 180deg at 50% 50%,
+          rgba(31, 111, 235, 0.15),
+          rgba(34, 197, 94, 0.15),
+          rgba(31, 111, 235, 0.15)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .logo::before,
+      .logo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+      }
+      .logo::before {
+        background: linear-gradient(
+          90deg,
+          transparent 45%,
+          rgba(255, 255, 255, 0.35) 50%,
+          transparent 55%
+        );
+        transform: translateX(-60%);
+        animation: sheen 3s linear infinite;
+      }
+      .logo::after {
+        mask: radial-gradient(circle at 50% 50%, black 45%, transparent 46%);
+        background: radial-gradient(
+          circle at 50% 50%,
+          var(--primary) 0 45%,
+          transparent 46%
+        );
+      }
+      @keyframes sheen {
+        100% {
+          transform: translateX(120%);
+        }
+      }
+      .brand-title {
+        font-weight: 800;
+        letter-spacing: 0.3px;
+      }
+      .brand-title span {
+        color: var(--primary);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--muted);
+        font-weight: 600;
+        transition: color 0.2s ease, opacity 0.2s ease;
+      }
+      .nav-links a:hover {
+        color: #fff;
+      }
+
+      /* Mobile menu */
+      .hamburger {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.04);
+        color: #fff;
+      }
+      .hamburger svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      @media (max-width: 900px) {
+        .nav-links {
+          display: none;
+        }
+        .hamburger {
+          display: grid;
+          place-items: center;
+        }
+        .mobile-panel {
+          position: fixed;
+          inset: 64px 0 auto 0;
+          background: rgba(11, 15, 25, 0.92);
+          border-top: 1px solid rgba(255, 255, 255, 0.06);
+          backdrop-filter: blur(10px);
+          display: none;
+        }
+        .mobile-panel.open {
+          display: block;
+        }
+        .mobile-nav {
+          display: grid;
+          gap: 0.6rem;
+          padding: 1rem;
+        }
+        .mobile-nav a {
+          padding: 0.9rem 1rem;
+          border-radius: 12px;
+          border: 1px solid rgba(255, 255, 255, 0.06);
+          color: #e5e7eb;
+          text-decoration: none;
+          font-weight: 600;
+        }
+      }
+
+      /* Hero Slider */
+      .hero {
+        position: relative;
+        isolation: isolate;
+      }
+      .slider {
+        position: relative;
+        height: min(78vh, 720px);
+        border-radius: clamp(12px, 2.2vw, var(--radius));
+        overflow: clip;
+        box-shadow: var(--shadow);
+      }
+      .slides {
+        display: flex;
+        height: 100%;
+        transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      .slide {
+        position: relative;
+        flex: 0 0 100%;
+        height: 100%;
+      }
+      .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: saturate(105%);
+      }
+      .slide::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          rgba(11, 15, 25, 0.8) 0 45%,
+          rgba(11, 15, 25, 0.35) 60%,
+          rgba(11, 15, 25, 0) 80%
+        );
+        pointer-events: none;
+      }
+
+      .caption {
+        position: absolute;
+        inset: auto auto 8% 6%;
+        z-index: 2;
+        width: min(720px, 88%);
+      }
+      .eyebrow {
+        display: inline-block;
+        padding: 0.2rem 0.6rem;
+        border-radius: 999px;
+        background: rgba(31, 111, 235, 0.2);
+        border: 1px solid rgba(31, 111, 235, 0.5);
+        color: #cfe3ff;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+      }
+      .title {
+        margin: 0.8rem 0 0.6rem;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.7rem, 5vw, 3.1rem);
+        line-height: 1.15;
+        letter-spacing: 0.2px;
+      }
+      .lead {
+        color: #c3c9d6;
+        font-size: clamp(1rem, 1.6vw, 1.125rem);
+        max-width: 56ch;
+      }
+      .cta-row {
+        display: flex;
+        gap: 0.8rem;
+        align-items: center;
+        margin-top: 1rem;
+        flex-wrap: wrap;
+      }
+      .ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.85rem 1.1rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      .controls {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        pointer-events: none;
+      }
+      .arrow {
+        align-self: center;
+        justify-self: start;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        pointer-events: auto;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        background: rgba(255, 255, 255, 0.06);
+        display: grid;
+        place-items: center;
+        margin-inline: 1rem;
+      }
+      .arrow.right {
+        justify-self: end;
+      }
+      .arrow svg {
+        width: 22px;
+        height: 22px;
+      }
+      .dots {
+        position: absolute;
+        left: 50%;
+        bottom: 14px;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 0.5rem;
+      }
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        opacity: 0.6;
+      }
+      .dot.active {
+        width: 22px;
+        opacity: 1;
+        background: linear-gradient(90deg, var(--primary), #60a5fa);
+      }
+
+      /* Feature grid */
+      .features {
+        padding: clamp(2rem, 5vw, 4rem) 0 0;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 1rem;
+      }
+      .card {
+        grid-column: span 3;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.04),
+          rgba(255, 255, 255, 0.02)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius);
+        padding: 1.4rem;
+        box-shadow: var(--shadow);
+        transition: transform 0.25s ease, border-color 0.25s ease;
+        height: 100%;
+      }
+      .card:hover {
+        transform: translateY(-2px);
+        border-color: rgba(255, 255, 255, 0.15);
+      }
+      .card h3 {
+        margin: 0.4rem 0 0.4rem;
+        font-size: 1.125rem;
+      }
+      .card p {
+        color: var(--muted);
+      }
+      .icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        background: rgba(31, 111, 235, 0.2);
+        border: 1px solid rgba(31, 111, 235, 0.5);
+      }
+
+      @media (max-width: 1100px) {
+        .card {
+          grid-column: span 6;
+        }
+      }
+      @media (max-width: 680px) {
+        .card {
+          grid-column: span 12;
+        }
+      }
+
+      /* About + CTA band */
+      .band {
+        margin: clamp(2rem, 6vw, 5rem) 0;
+      }
+      .band-inner {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 2fr 1.2fr;
+        background: linear-gradient(
+          90deg,
+          rgba(31, 111, 235, 0.15),
+          rgba(34, 197, 94, 0.12)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius);
+        padding: clamp(1rem, 5vw, 2rem);
+        box-shadow: var(--shadow);
+      }
+      .band p {
+        color: #cbd5e1;
+      }
+      @media (max-width: 900px) {
+        .band-inner {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Footer */
+      footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        margin-top: 3rem;
+      }
+      .footer {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 1rem;
+        padding: 2rem 0;
+      }
+      .f-brand {
+        grid-column: span 4;
+        color: var(--muted);
+      }
+      .f-cols {
+        grid-column: span 8;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+      }
+      .f-col h4 {
+        margin: 0 0 0.6rem;
+        font-size: 0.95rem;
+        color: #fff;
+      }
+      .f-col a {
+        display: inline-block;
+        padding: 0.35rem 0;
+        color: var(--muted);
+        text-decoration: none;
+      }
+      .f-col a:hover {
+        color: #fff;
+      }
+      .legal {
+        padding: 0.8rem 0 2rem;
+        color: var(--muted);
+        font-size: 0.9rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      @media (max-width: 900px) {
+        .f-brand {
+          grid-column: span 12;
+        }
+        .f-cols {
+          grid-column: span 12;
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 560px) {
+        .f-cols {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="site-header" role="banner">
+      <div class="nav-wrap">
+        <div class="container nav" aria-label="Primary navigation">
+          <a class="brand" href="#" aria-label="Joy Aluminum Home">
+            <span class="logo" aria-hidden="true"></span>
+            <strong class="brand-title"
+              ><span>Joy</span> Aluminum Center</strong
+            >
+          </a>
+
+          <nav class="nav-links" role="navigation">
+            <a href="#home">Home</a>
+            <a href="category-page.html">Works</a>
+            <a href="store.html">Shop</a>
+            <a href="#contact">Contact</a>
+            <a href="company-info.html">About</a>
+            <a class="button" href="qoute.html">Get Quote</a>
+          </nav>
+
+          <button
+            class="hamburger"
+            id="hamburger"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            aria-label="Open menu"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 6h18M3 12h18M3 18h18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="mobile-menu" class="mobile-panel" hidden>
+        <div class="container mobile-nav">
+          <a href="#home">Home</a>
+          <a href="category-page.html">Works</a>
+          <a href="store.html">Shop</a>
+          <a href="#contact">Contact</a>
+          <a href="company-info.html">About</a>
+          <a class="button" href="qoute.html">Get Quote</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="home">
+      <!-- HERO / SLIDER -->
+      <section class="container hero" aria-label="Showcase">
+        <div
+          class="slider"
+          id="slider"
+          tabindex="0"
+          aria-roledescription="carousel"
+          aria-label="Joy Aluminum Projects"
+          aria-live="polite"
+        >
+          <div class="slides" id="slides">
+            <!-- Use your existing images to avoid 404s -->
+            <article class="slide">
+              <img
+                src="img/09.jpg"
+                alt="Toughened glass installation"
+                loading="eager"
+              />
+              <div class="caption">
+                <span class="eyebrow">Precision Glass • Seamless Finish</span>
+                <h1 class="title">
+                  Elevate Your Spaces with Architectural Glass & Aluminum
+                </h1>
+                <p class="lead">
+                  From frameless showers to storefront systems, we engineer
+                  clean lines, durable hardware, and flawless installations that
+                  stand the test of time.
+                </p>
+                <div class="cta-row">
+                  <a class="button" href="#quote">Request a Free Quote</a>
+                  <a class="ghost" href="#works">View Recent Works</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="slide">
+              <img
+                src="img/10.jpeg"
+                alt="Sliding windows and doors in modern home"
+                loading="lazy"
+              />
+              <div class="caption">
+                <span class="eyebrow">Energy • Security • Style</span>
+                <h2 class="title">
+                  Premium Windows & Doors Built for West African Climates
+                </h2>
+                <p class="lead">
+                  Thermally efficient frames, quality rollers, and secure
+                  multi‑point locks—tailored to your project and budget.
+                </p>
+                <div class="cta-row">
+                  <a class="button" href="#shop">Explore Products</a>
+                  <a class="ghost" href="#contact">Talk to an Expert</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="slide">
+              <img
+                src="img/11.jpg"
+                alt="Curtain wall facade detail"
+                loading="lazy"
+              />
+              <div class="caption">
+                <span class="eyebrow">Commercial Grade</span>
+                <h2 class="title">
+                  Curtain Walls & Storefronts with Crisp Sightlines
+                </h2>
+                <p class="lead">
+                  We integrate structure, drainage, and sealing for
+                  crystal‑clear results that perform season after season.
+                </p>
+                <div class="cta-row">
+                  <a class="button" href="#works">See Installations</a>
+                  <a class="ghost" href="#quote">Get Project Estimate</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="slide">
+              <img
+                src="img/12.jpeg"
+                alt="Balustrades and office partitions"
+                loading="lazy"
+              />
+              <div class="caption">
+                <span class="eyebrow">Safe • Sleek • Modern</span>
+                <h2 class="title">
+                  Balustrades & Partitions That Let Light Lead
+                </h2>
+                <p class="lead">
+                  Tempered panels, polished edges, and discrete fixing
+                  systems—made to measure with meticulous care.
+                </p>
+                <div class="cta-row">
+                  <a class="button" href="#contact">Book a Site Visit</a>
+                  <a class="ghost" href="#about">Why Choose Us</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="slide">
+              <img
+                src="img/20.jpeg"
+                alt="Aluminum fabrication workshop"
+                loading="lazy"
+              />
+              <div class="caption">
+                <span class="eyebrow">Fabrication Excellence</span>
+                <h2 class="title">
+                  Custom Aluminum Fabrication—On Spec & On Time
+                </h2>
+                <p class="lead">
+                  Powder‑coated finishes, CNC precision, and quality control
+                  that starts at the drawing board.
+                </p>
+                <div class="cta-row">
+                  <a class="button" href="#works">Browse Portfolio</a>
+                  <a class="ghost" href="#quote">Start Your Quote</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="slide">
+              <img
+                src="img/04.jpeg"
+                alt="Showroom glazing details"
+                loading="lazy"
+              />
+              <div class="caption">
+                <span class="eyebrow">Details That Matter</span>
+                <h2 class="title">
+                  Hardware, Seals, and Profiles You Can Trust
+                </h2>
+                <p class="lead">
+                  We spec reputable brands and keep spares stocked—so
+                  maintenance is painless and performance lasts.
+                </p>
+                <div class="cta-row">
+                  <a class="button" href="#shop">See Components</a>
+                  <a class="ghost" href="#contact">After‑sales Support</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="slide">
+              <img
+                src="img/18.jpeg"
+                alt="Modern facade with glass"
+                loading="lazy"
+              />
+              <div class="caption">
+                <span class="eyebrow">Design + Delivery</span>
+                <h2 class="title">From Concept Sketch to Final Fix</h2>
+                <p class="lead">
+                  We coordinate measurements, fabrication, and installation so
+                  your timeline stays intact.
+                </p>
+                <div class="cta-row">
+                  <a class="button" href="#quote">Free Measurement</a>
+                  <a class="ghost" href="#contact">Call Our Team</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Controls -->
+          <div class="controls" aria-hidden="true">
+            <button
+              class="arrow left"
+              id="prev"
+              type="button"
+              title="Previous slide"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button
+              class="arrow right"
+              id="next"
+              type="button"
+              title="Next slide"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+          <div
+            class="dots"
+            id="dots"
+            role="tablist"
+            aria-label="Slide selectors"
+          ></div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section class="container features" id="works" aria-label="What we do">
+        <div class="grid">
+          <div class="card">
+            <div class="icon" aria-hidden="true">🔧</div>
+            <h3>Made‑to‑Measure Fabrication</h3>
+            <p>
+              Precision cuts, miters, and clean assembly—aligned with your
+              drawings and site conditions.
+            </p>
+          </div>
+          <div class="card">
+            <div class="icon" aria-hidden="true">🛡️</div>
+            <h3>Durable, Safe Materials</h3>
+            <p>
+              Tempered/laminated glass, marine‑grade fasteners, and
+              powder‑coated profiles for longevity.
+            </p>
+          </div>
+          <div class="card">
+            <div class="icon" aria-hidden="true">⏱️</div>
+            <h3>On‑Time Installation</h3>
+            <p>
+              We plan logistics and staging to minimize disruption and deliver
+              right the first time.
+            </p>
+          </div>
+          <div class="card">
+            <div class="icon" aria-hidden="true">🤝</div>
+            <h3>After‑Sales Support</h3>
+            <p>
+              Warranties, maintenance tips, and quick help when you need
+              replacements or tweaks.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- About / CTA band -->
+      <section class="container band" id="about">
+        <div class="band-inner">
+          <div>
+            <h3 style="margin: 0 0 0.4rem; font-size: 1.4rem">
+              Why Joy Aluminum?
+            </h3>
+            <p>
+              We combine craftsmanship with reliable scheduling. Our team brings
+              years of glazing know‑how, clear communication, and tidy
+              workmanship to every project—from home upgrades to commercial
+              facades.
+            </p>
+          </div>
+          <div
+            style="
+              align-self: center;
+              justify-self: end;
+              display: flex;
+              gap: 0.6rem;
+              flex-wrap: wrap;
+            "
+          >
+            <a class="button" href="#quote">Get Your Free Quote</a>
+            <a class="ghost" href="#contact">Contact Us</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container footer">
+        <div class="f-brand">
+          <a class="brand" href="#">
+            <span class="logo" aria-hidden="true"></span>
+            <strong class="brand-title"
+              ><span>Joy</span> Aluminum Center</strong
+            >
+          </a>
+          <p style="margin: 0.8rem 0 0">
+            Design • Fabrication • Installation of architectural glass and
+            aluminum systems across Ghana.
+          </p>
+        </div>
+        <div class="f-cols">
+          <div class="f-col">
+            <h4>Company</h4>
+            <a href="#about">About us</a>
+            <a href="#works">Portfolio</a>
+            <a href="#shop">Shop</a>
+          </div>
+          <div class="f-col">
+            <h4>Support</h4>
+            <a href="#contact">Contact</a>
+            <a href="#quote">Request quote</a>
+            <a href="#">FAQ</a>
+          </div>
+          <div class="f-col">
+            <h4>Resources</h4>
+            <a href="#">Blog</a>
+            <a href="#">Care & maintenance</a>
+            <a href="#">Spec sheets</a>
+          </div>
+          <div class="f-col">
+            <h4>Social</h4>
+            <a href="https://www.facebook.com" target="_blank" rel="noopener"
+              >Facebook</a
+            >
+            <a href="https://www.instagram.com" target="_blank" rel="noopener"
+              >Instagram</a
+            >
+            <a href="https://www.tiktok.com" target="_blank" rel="noopener"
+              >TikTok</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="container legal">
+        <div>
+          © <span id="year"></span> Joy Aluminum Center. All rights reserved.
+        </div>
+        <div>Built with care in Ghana.</div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      const hamburger = document.getElementById("hamburger");
+      const panel = document.getElementById("mobile-menu");
+      hamburger?.addEventListener("click", () => {
+        const open = panel.classList.toggle("open");
+        hamburger.setAttribute("aria-expanded", String(open));
+        panel.hidden = !open;
+      });
+
+      // Slider logic (autoplay + keyboard + dots)
+      const slides = Array.from(document.querySelectorAll(".slide"));
+      const slidesEl = document.getElementById("slides");
+      const prev = document.getElementById("prev");
+      const next = document.getElementById("next");
+      const dotsWrap = document.getElementById("dots");
+      const slider = document.getElementById("slider");
+
+      let index = 0;
+      let timer = null;
+      const DURATION = 6000; // 6s
+
+      function go(i) {
+        index = (i + slides.length) % slides.length;
+        slidesEl.style.transform = `translateX(${-100 * index}%)`;
+        updateDots();
+      }
+
+      function nextSlide() {
+        go(index + 1);
+      }
+      function prevSlide() {
+        go(index - 1);
+      }
+
+      prev.addEventListener("click", prevSlide);
+      next.addEventListener("click", nextSlide);
+
+      // Keyboard
+      slider.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") nextSlide();
+        if (e.key === "ArrowLeft") prevSlide();
+      });
+
+      // Dots
+      function buildDots() {
+        dotsWrap.innerHTML = "";
+        slides.forEach((_, i) => {
+          const b = document.createElement("button");
+          b.className = "dot";
+          b.type = "button";
+          b.setAttribute("role", "tab");
+          b.setAttribute("aria-selected", String(i === index));
+          b.addEventListener("click", () => go(i));
+          dotsWrap.appendChild(b);
+        });
+        updateDots();
+      }
+      function updateDots() {
+        Array.from(dotsWrap.children).forEach((d, i) => {
+          d.classList.toggle("active", i === index);
+          d.setAttribute("aria-selected", String(i === index));
+        });
+      }
+
+      // Autoplay with pause on hover/focus
+      function start() {
+        stop();
+        timer = setInterval(nextSlide, DURATION);
+      }
+      function stop() {
+        if (timer) clearInterval(timer);
+      }
+      slider.addEventListener("mouseenter", stop);
+      slider.addEventListener("mouseleave", start);
+      slider.addEventListener("focusin", stop);
+      slider.addEventListener("focusout", start);
+
+      buildDots();
+      start();
+
+      // year
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

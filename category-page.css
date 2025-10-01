@@ -1,0 +1,168 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+  background: #f0f0f0;
+}
+
+header {
+  display: flex;
+  justify-content: left;
+  text-align: center;
+  align-items: center;
+  box-shadow: 0 0 8px rgba(32, 31, 31, 0.6);
+  padding: 5px;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 1.5rem;
+  background: linear-gradient(180deg, #1d3ee2, #fff8f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+header a {
+  margin-right: 5px;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-size: 20px;
+  text-shadow: 3px 3px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  color: rgba(7, 84, 238, 0.9);
+  transition: 0.3s ease-in;
+}
+
+.container {
+  display: grid;
+  /*grid-template-columns: repeat(auto-fit, minmax(600px, 2fr));*/
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card {
+  border-radius: 7px;
+  padding: 150px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  text-align: center;
+  color: white;
+  width: 100%;
+  /* Multiple backgrounds: gradient first, image second */
+  /* background: linear-gradient(90deg, #1d3ee2, transparent), url(img/10.jpeg);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;*/
+}
+
+#no-1 {
+  background: linear-gradient(90deg, #1d3ee2, transparent), url(img/10.jpeg);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#no-2 {
+  background: linear-gradient(90deg, #1d3ee2, transparent), url(img/04.jpeg);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#no-3 {
+  background: linear-gradient(90deg, #1d3ee2, transparent), url(img/18.jpeg);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#no-4 {
+  background: linear-gradient(90deg, #1d3ee2, transparent), url(img/08.jpeg);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#no-5 {
+  background: linear-gradient(90deg, #1d3ee2, transparent), url(img/13.jpg);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#no-6 {
+  background: linear-gradient(90deg, #1d3ee2, transparent), url(img/04.jpeg);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#no-7 {
+  background: linear-gradient(90deg, #1d3ee2, transparent), url(img/04.jpeg);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#no-8 {
+  background: linear-gradient(90deg, #1d3ee2, transparent), url(img/04.jpeg);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#no-9 {
+  background: linear-gradient(90deg, #1d3ee2, transparent), url(img/04.jpeg);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#no-10 {
+  background: linear-gradient(90deg, #1d3ee2, transparent), url(img/04.jpeg);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.card h1 a {
+  list-style: none;
+  text-decoration: none;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 10px;
+    transform: none;
+  }
+}
+
+@media (max-width: 600px) {
+  header a,
+  strong {
+    margin-top: 10px;
+  }
+
+  .details h3 {
+    font-size: 14px;
+  }
+
+  .details p {
+    font-size: 12px;
+  }
+}

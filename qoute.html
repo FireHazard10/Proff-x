@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Request a Quote | Joy Aluminum Center</title>
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --primary: #1f6feb;
+        --primary-600: #1a60cf;
+        --bg: #0b0f19;
+        --card: #0f1524;
+        --muted: #9198ab;
+        --text: #e6e9f2;
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+        --radius: 16px;
+        --container: 900px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 16px/1.6 "Inter", system-ui, -apple-system, Segoe UI, Roboto,
+          Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .container {
+        width: min(100% - 2rem, var(--container));
+        margin-inline: auto;
+      }
+
+      header {
+        padding: 1.2rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 800;
+        font-size: 1.25rem;
+      }
+      .brand span {
+        color: var(--primary);
+      }
+
+      h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+        margin: 1.2rem 0 0.6rem;
+      }
+      p.lead {
+        color: var(--muted);
+        margin-bottom: 2rem;
+        max-width: 60ch;
+      }
+
+      form {
+        background: var(--card);
+        padding: 2rem;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        display: grid;
+        gap: 1.2rem;
+      }
+      label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+      }
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 0.9rem 1rem;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text);
+        font-size: 1rem;
+      }
+      input:focus,
+      textarea:focus,
+      select:focus {
+        outline: none;
+        border-color: var(--primary);
+      }
+      textarea {
+        min-height: 140px;
+        resize: vertical;
+      }
+
+      button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(180deg, var(--primary), var(--primary-600));
+        color: #fff;
+        border: 0;
+        padding: 1rem 1.5rem;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        box-shadow: var(--shadow);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      button:hover {
+        transform: translateY(-1px);
+      }
+
+      footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        margin-top: 3rem;
+        text-align: center;
+        padding: 1.5rem 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <a href="index.html" class="brand"><span>Joy</span> Aluminum Center</a>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>Request a Quote</h1>
+      <p class="lead">
+        Fill out the form below and our team will get back to you with a
+        tailored estimate for your project.
+      </p>
+
+      <form action="https://formspree.io/f/abcd1234" method="POST">
+        <div>
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+
+        <div>
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+
+        <div>
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" />
+        </div>
+
+        <div>
+          <label for="service">Service Needed</label>
+          <select id="service" name="service" required>
+            <option value="">Select a service</option>
+            <option>Glass Installation</option>
+            <option>Windows & Doors</option>
+            <option>Curtain Walls</option>
+            <option>Balustrades & Partitions</option>
+            <option>Custom Fabrication</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="message">Project Details</label>
+          <textarea
+            id="message"
+            name="message"
+            placeholder="Tell us more about your project..."
+            required
+          ></textarea>
+        </div>
+
+        <!-- Optional: redirect after submit -->
+        <input
+          type="hidden"
+          name="_next"
+          value="https://yourwebsite.com/thank-you.html"
+        />
+
+        <button type="submit">Submit Request</button>
+      </form>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Joy Aluminum Center. All rights reserved.
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

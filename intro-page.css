@@ -1,73 +1,123 @@
-body {
+/* Reset */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   min-height: 100vh;
-  font-family: Arial, sans-serif;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  background: linear-gradient(
+      to bottom right,
+      rgba(10, 30, 80, 0.75),
+      rgba(0, 0, 0, 0.6)
+    ),
+    url("img/07.jpg") center/cover no-repeat;
+  color: white;
+  overflow: hidden;
   position: relative;
-  object-fit: cover;
-  width: 100%;
-  height: 100vh;
-
-  /* Multiple backgrounds: gradient first, image second */
-  background: linear-gradient(90deg, #1d3ee2, transparent), url(img/07.jpg);
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  text-align: center;
 }
 
 header {
   position: absolute;
-  top: 20px;
-  left: 20px;
-}
-
-header .logo {
-  margin: 0;
+  top: 30px;
+  left: 40px;
   font-size: 1.8rem;
-  font-weight: bold;
-  font-family: "M PLUS Rounded 1c", sans-serif;
   font-weight: 700;
-  color: white;
-  /*background: linear-gradient(180deg, #1d3ee2, #fff8f0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;*/
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #ffffff;
+  animation: fadeInDown 1.2s ease forwards;
 }
 
-/*.logo {
-  margin: 0;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #fff8f0 50%, #7288f4 50%);
-  font-family: Arial, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}*/
-
+header span {
+  color: #1d3ee2;
+}
 main h2 {
-  margin-top: 0;
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 700;
-  color: whitesmoke;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 1.5s ease forwards;
+}
+
+main p {
+  font-size: 1.1rem;
+  max-width: 500px;
+  color: #f0f0f0;
+  opacity: 0.9;
+  animation: fadeInUp 1.8s ease forwards;
 }
 
 .explore-btn {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  background: linear-gradient(180deg, #7288f4, #1d3ee2);
+  margin-top: 50px;
+  background: linear-gradient(135deg, #7288f4, #1d3ee2);
   color: white;
-  padding: 1.5rem 4.5rem;
+  padding: 1rem 3rem;
   border: none;
-  border-radius: 10px;
+  border-radius: 50px;
   font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease-in-out;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  animation: fadeInUp 2.2s ease forwards;
 }
+
 .explore-btn:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(114, 136, 244, 0.6);
+}
+
+/* Simple overlay fade animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  main h2 {
+    font-size: 2rem;
+  }
+
+  main p {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  header {
+    font-size: 1.3rem;
+    left: 20px;
+    top: 20px;
+  }
+
+  .explore-btn {
+    padding: 0.9rem 2.5rem;
+  }
 }

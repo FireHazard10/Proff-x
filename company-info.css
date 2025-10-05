@@ -330,6 +330,7 @@ footer {
   grid-template-columns: repeat(12, 1fr);
   gap: 1rem;
   padding: 2rem 0;
+  margin-left: 15px;
 }
 .f-brand {
   grid-column: span 4;
@@ -363,6 +364,7 @@ footer {
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
+  margin-left: 15px;
 }
 @media (max-width: 900px) {
   .f-brand {
@@ -378,3 +380,4 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+

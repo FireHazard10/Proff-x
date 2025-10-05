@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Store | JOY ALUMINIUM</title>
     <style>
+      :root {
+        --primary: #1f6feb; /* refined steel-blue */
+        --primary-600: #1a60cf;
+      }
       /* ===== GENERAL STYLING ===== */
       * {
         margin: 0;
@@ -42,11 +46,62 @@
         z-index: 1000;
       }
 
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        text-decoration: none;
+        color: var(--text);
+      }
       .logo {
-        font-family: "M PLUS Rounded 1c", sans-serif;
-        font-size: 1.5rem;
-        font-weight: bold;
-        letter-spacing: 1px;
+        position: relative;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: conic-gradient(
+          from 180deg at 50% 50%,
+          rgba(31, 111, 235, 0.15),
+          rgba(34, 197, 94, 0.15),
+          rgba(31, 111, 235, 0.15)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .logo::before,
+      .logo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+      }
+      .logo::before {
+        background: linear-gradient(
+          90deg,
+          transparent 45%,
+          rgba(255, 255, 255, 0.35) 50%,
+          transparent 55%
+        );
+        transform: translateX(-60%);
+        animation: sheen 3s linear infinite;
+      }
+      .logo::after {
+        mask: radial-gradient(circle at 50% 50%, black 45%, transparent 46%);
+        background: radial-gradient(
+          circle at 50% 50%,
+          var(--primary) 0 45%,
+          transparent 46%
+        );
+      }
+      @keyframes sheen {
+        100% {
+          transform: translateX(120%);
+        }
+      }
+      .brand-title {
+        font-weight: 800;
+        letter-spacing: 0.3px;
+      }
+      .brand-title span {
+        color: var(--primary);
       }
 
       .search-bar {
@@ -198,7 +253,10 @@
 
   <body>
     <header>
-      <div class="logo">JOY ALUMINIUM STORE</div>
+      <a class="brand" href="#" aria-label="Joy Aluminum Home">
+        <span class="logo" aria-hidden="true"></span>
+        <strong class="brand-title"><span>Joy</span> Aluminum Center</strong>
+      </a>
       <div class="search-bar">
         <input type="text" id="searchInput" placeholder="Search tools..." />
         <button class="cart-toggle" onclick="toggleCart()">🛒 View Cart</button>

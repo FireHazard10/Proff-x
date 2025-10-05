@@ -1,9 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Works</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Completed Projects — Portfolio</title>
+    <link rel="stylesheet" href="browse-page.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="topbar">
+      <div
+        class="back-btn"
+        title="Back"
+        onclick="window.location.href='home-page.html'"
+      >
+        <!-- simple arrow -->
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden
+        >
+          <path
+            d="M15 6L9 12L15 18"
+            stroke="#0f172a"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+      <div>
+        <div class="page-title">Completed Projects</div>
+        <div style="font-size: 13px; color: var(--muted)">
+          Recent jobs and deliveries
+        </div>
+      </div>
+    </div>
+
+    <div class="layout">
+      <div class="next-vertical">Next Page</div>
+
+      <main>
+        <section class="grid" aria-label="Completed projects gallery">
+          <!-- Card 1 -->
+          <article class="card">
+            <div class="card-thumb" style="background-image: url(img/01.jpeg)">
+              <span class="badge">P.I.C</span>
+            </div>
+            <div class="card-body">
+              <div class="proj-title">Works at: Main Street Residence</div>
+              <div class="proj-meta">xxx - xxx</div>
+              <div class="visit-row">
+                <div class="proj-meta">Completed • 2025</div>
+                <button class="visit-btn" onclick="openProject('project1')">
+                  Visit
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="card">
+            <div class="card-thumb" style="background-image: url(img/02.jpg)">
+              <span class="badge">P.I.C</span>
+            </div>
+            <div class="card-body">
+              <div class="proj-title">Works at: Riverside Mall</div>
+              <div class="proj-meta">xxx - xxx</div>
+              <div class="visit-row">
+                <div class="proj-meta">Completed • 2024</div>
+                <button class="visit-btn" onclick="openProject('project2')">
+                  Visit
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="card">
+            <div class="card-thumb" style="background-image: url(img/05.jpg)">
+              <span class="badge">P.I.C</span>
+            </div>
+            <div class="card-body">
+              <div class="proj-title">Works at: Lakeside Villas</div>
+              <div class="proj-meta">xxx - xxx</div>
+              <div class="visit-row">
+                <div class="proj-meta">Completed • 2023</div>
+                <button class="visit-btn" onclick="openProject('project3')">
+                  Visit
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="card">
+            <div
+              class="card-thumb"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=60');
+              "
+            >
+              <span class="badge">P.I.C</span>
+            </div>
+            <div class="card-body">
+              <div class="proj-title">Works at: Coastal Hotel Renovation</div>
+              <div class="proj-meta">xxx - xxx</div>
+              <div class="visit-row">
+                <div class="proj-meta">Completed • 2022</div>
+                <button class="visit-btn" onclick="openProject('project4')">
+                  Visit
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="card">
+            <div class="card-thumb" style="background-image: url(img/07.jpg)">
+              <span class="badge">P.I.C</span>
+            </div>
+            <div class="card-body">
+              <div class="proj-title">Works at: University Library</div>
+              <div class="proj-meta">xxx - xxx</div>
+              <div class="visit-row">
+                <div class="proj-meta">Completed • 2021</div>
+                <button class="visit-btn" onclick="openProject('project5')">
+                  Visit
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 6 -->
+          <article class="card">
+            <div
+              class="card-thumb"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=60');
+              "
+            >
+              <span class="badge">P.I.C</span>
+            </div>
+            <div class="card-body">
+              <div class="proj-title">Works at: Riverside Apartments</div>
+              <div class="proj-meta">xxx - xxx</div>
+              <div class="visit-row">
+                <div class="proj-meta">Completed • 2020</div>
+                <button class="visit-btn" onclick="openProject('project6')">
+                  Visit
+                </button>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      function openProject(id) {
+        // For the prototype we'll open a modal or navigate — here we just show a quick replacement.
+        alert(
+          "Open project: " +
+            id +
+            " — you can replace this with a route or modal."
+        );
+      }
+    </script>
+  </body>
 </html>

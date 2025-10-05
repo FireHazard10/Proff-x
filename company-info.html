@@ -11,9 +11,27 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   />
+   <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
   <body>
     <header>
-      <a href="home-page.html">🏠HOME</a>
+       <a href="home-page.html" class="home-link">
+        <svg
+          class="logo"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3 9.75L12 3l9 6.75V21a.75.75 0 01-.75.75h-5.25v-6.75h-6V21.75H3.75A.75.75 0 013 21V9.75z"
+          />
+        </svg>
+        HOME
       <!-- Social Media Bar -->
       <div class="social-icons">
         <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
@@ -36,7 +54,7 @@
     <main>
       <div class="abt">
         <div class="abt-left">
-          <div class="logo">JOY ALUMINIUM</div>
+          <div class="name">JOY ALUMINIUM CENTER</div>
           <img src="img/09.jpg" alt="Company Logo" />
         </div>
 
@@ -85,13 +103,60 @@
       </section>
     </main>
 
-    <footer class="appreciation">
-      <p>
-        🙏 Thank you for visiting <strong>JOY ALUMINIUM</strong>. We truly
-        appreciate your trust and support. Together, we build with strength,
-        precision, and excellence.
-      </p>
-      <p>© 2025 JOY ALUMINIUM — All Rights Reserved</p>
+    <!-- Footer -->
+    <footer>
+      <div class="container footer">
+        <div class="f-brand">
+          <a class="brand" href="#">
+            <span class="logo" aria-hidden="true"></span>
+            <strong class="brand-title"
+              ><span>Joy</span> Aluminum Center</strong
+            >
+          </a>
+          <p style="margin: 0.8rem 0 0">
+            Design • Fabrication • Installation of architectural glass and
+            aluminum systems across Ghana.
+          </p>
+        </div>
+        <div class="f-cols">
+          <div class="f-col">
+            <h4>Company</h4>
+            <a href="#about">About us</a>
+            <a href="#works">Portfolio</a>
+            <a href="#shop">Shop</a>
+          </div>
+          <div class="f-col">
+            <h4>Support</h4>
+            <a href="#contact">Contact</a>
+            <a href="#quote">Request quote</a>
+            <a href="#">FAQ</a>
+          </div>
+          <div class="f-col">
+            <h4>Resources</h4>
+            <a href="#">Blog</a>
+            <a href="#">Care & maintenance</a>
+            <a href="#">Spec sheets</a>
+          </div>
+          <div class="f-col">
+            <h4>Social</h4>
+            <a href="https://www.facebook.com" target="_blank" rel="noopener"
+              >Facebook</a
+            >
+            <a href="https://www.instagram.com" target="_blank" rel="noopener"
+              >Instagram</a
+            >
+            <a href="https://www.tiktok.com" target="_blank" rel="noopener"
+              >TikTok</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="container legal">
+        <div>
+          © <span id="year"></span> Joy Aluminum Center. All rights reserved.
+        </div>
+        <div>Built with care in Ghana.</div>
+      </div>
     </footer>
   </body>
 </html>

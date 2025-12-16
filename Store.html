@@ -3,12 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Store | JOY ALUMINIUM</title>
+    <title>Store | JOY ALUMINIUM & HARDWARE</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
+      /* --- 1. Design Tokens (Consistent with Polished Home Page) --- */
       :root {
-        --primary: #1f6feb; /* refined steel-blue */
-        --primary-600: #1a60cf;
+        --primary: #2575f0; /* Richer Blue */
+        --primary-600: #1f68e0;
+        --bg: #0c101a; /* Darker/Richer Background */
+        --card: #141b26; /* Dark Card Background */
+        --border-color: rgba(
+          255,
+          255,
+          255,
+          0.12
+        ); /* Stronger Border Contrast */
+        --muted: #a3aab9;
+        --text: #f0f6fc;
+        --accent: #22c55e; /* Success accent */
+        --shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+        --radius: 12px;
+        --container-width: 1200px;
+        --spacing-md: 2.5rem;
       }
+
       /* ===== GENERAL STYLING ===== */
       * {
         margin: 0;
@@ -17,33 +39,42 @@
       }
 
       body {
-        font-family: "Poppins", Arial, sans-serif;
-        background: #c7c7c7;
-        overflow-x: hidden;
-      }
-
-      /* ===== HEADER ===== */
-      header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 25px;
+        /* Use the polished background from the home page */
         background: radial-gradient(
             1200px 600px at 80% -10%,
-            rgba(31, 111, 235, 0.18),
+            rgba(37, 117, 240, 0.1),
             transparent
           ),
           radial-gradient(
             900px 500px at -10% 10%,
-            rgba(34, 197, 94, 0.14),
+            rgba(34, 197, 94, 0.08),
             transparent
           ),
-          #0b0f19;
-        color: white;
-        box-shadow: 0 0 8px rgba(32, 31, 31, 0.6);
+          var(--bg);
+        color: var(--text);
+        font: 16px/1.6 "Inter", system-ui, -apple-system, Segoe UI, Roboto,
+          Arial, sans-serif;
+        overflow-x: hidden;
+      }
+
+      .container {
+        width: min(100% - 2rem, var(--container-width));
+        margin-inline: auto;
+      }
+
+      /* --- 2. HEADER & NAVIGATION --- */
+      header {
         position: sticky;
         top: 0;
-        z-index: 1000;
+        z-index: 40;
+        padding: 1rem 2rem;
+        /* Sticky, blurred nav bar style */
+        background: rgba(12, 16, 26, 0.95);
+        border-bottom: 1px solid var(--border-color);
+        backdrop-filter: saturate(120%) blur(10px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
 
       .brand {
@@ -53,261 +84,408 @@
         text-decoration: none;
         color: var(--text);
       }
-      .logo {
-        position: relative;
-        width: 40px;
-        height: 40px;
-        border-radius: 8px;
-        overflow: hidden;
-        background: url(Proff/101.png) center/cover;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-      }
-      .logo::before,
-      .logo::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-      }
-      .logo::before {
-        background: linear-gradient(
-          90deg,
-          transparent 45%,
-          rgba(255, 255, 255, 0.35) 50%,
-          transparent 55%
-        );
-        transform: translateX(-60%);
-        animation: sheen 3s linear infinite;
-      }
-      .logo::after {
-        mask: radial-gradient(circle at 50% 50%, black 45%, transparent 46%);
-        background: radial-gradient(
-          circle at 50% 50%,
-          transparent 0 45%,
-          transparent 46%
-        );
-      }
-      @keyframes sheen {
-        100% {
-          transform: translateX(120%);
-        }
-      }
       .brand-title {
-        font-weight: 800;
+        font-weight: 700;
         letter-spacing: 0.3px;
+        font-size: 1.2rem;
       }
       .brand-title span {
         color: var(--primary);
       }
+      .logo {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        background: var(--primary);
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        color: white;
+      }
 
-      .search-bar {
+      .cart-btn {
         display: flex;
         align-items: center;
-      }
-
-      .search-bar input {
-        padding: 8px 12px;
-        border: none;
-        border-radius: 5px 0 0 5px;
-        outline: none;
-        font-size: 1rem;
-        width: 200px;
-      }
-
-      .cart-toggle {
-        background: #ffcc00;
-        border: none;
-        color: #000;
-        padding: 8px 14px;
-        border-radius: 0 5px 5px 0;
-        font-weight: bold;
+        gap: 0.5rem;
+        padding: 0.7rem 1.2rem;
+        border-radius: 999px;
+        border: 1px solid var(--border-color);
+        background: var(--card);
+        color: var(--text);
+        font-weight: 600;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all 0.2s ease;
+      }
+      .cart-btn:hover {
+        background: var(--primary-600);
+        color: #fff;
+        border-color: var(--primary-600);
+      }
+      .cart-btn svg {
+        width: 20px;
+        height: 20px;
+        stroke: currentColor;
       }
 
-      .cart-toggle:hover {
-        background: #ffd94d;
-      }
-
-      /* ===== PRODUCT GRID ===== */
-      .products {
+      /* --- 3. MAIN LAYOUT --- */
+      .store-layout {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 20px;
-        padding: 40px 30px;
-        max-width: 1200px;
-        margin: 0 auto;
+        grid-template-columns: 280px 1fr; /* Filter sidebar and main content */
+        gap: 4rem;
+        padding: var(--spacing-md) 0;
       }
 
-      .product {
-        background: linear-gradient(180deg, #ffffff, #f4f4f4);
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        overflow: hidden;
-        text-align: center;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      /* Sidebar / Filters / Cart */
+      .sidebar {
+        position: sticky;
+        top: 80px; /* Below the header */
+        height: calc(100vh - 100px);
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
       }
 
-      .product:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 8px 20px rgba(29, 62, 226, 0.25);
+      .filter-box,
+      .cart-box {
+        background: var(--card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+      .filter-box h3,
+      .cart-box h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding-bottom: 0.5rem;
       }
 
-      .product img {
+      .search-input {
         width: 100%;
-        height: 180px;
-        object-fit: cover;
-        border-bottom: 3px solid #1d3ee2;
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        background: #1e2632;
+        color: var(--text);
+        font-size: 1rem;
+        transition: border-color 0.2s;
+      }
+      .search-input:focus {
+        outline: none;
+        border-color: var(--primary);
       }
 
-      .product h3 {
-        margin: 10px 0;
-        color: #1d3ee2;
-        font-size: 1.2rem;
+      /* Cart Scrolling FIX (Issue 2) */
+      .cart-items-wrapper {
+        max-height: 125px; /* Set max height */
+        overflow-y: auto; /* Enable vertical scroll */
+        padding-right: 8px;
+        margin-bottom: 1rem;
+      }
+      /* Custom scrollbar for dark theme */
+      .cart-items-wrapper::-webkit-scrollbar {
+        width: 6px;
+      }
+      .cart-items-wrapper::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 999px;
       }
 
-      .product p {
-        color: green;
-        font-weight: bold;
-        margin-bottom: 10px;
-      }
-
-      .product button {
-        background: linear-gradient(135deg, #7288f4, #1d3ee2);
-        color: white;
-        border: none;
-        padding: 10px 18px;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background 0.3s ease;
-        margin-bottom: 15px;
-      }
-
-      .product button:hover {
-        background: linear-gradient(135deg, #1d3ee2, #7288f4);
-      }
-
-      /* ===== CART BOX ===== */
-      .cart {
-        position: fixed;
-        right: 20px;
-        top: 80px;
-        background: #fff;
-        border-radius: 10px;
-        padding: 20px;
-        width: 320px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-        display: none;
-        z-index: 999;
-        border: 2px solid #1d3ee2;
-      }
-
-      .cart h2 {
-        margin-bottom: 10px;
-        color: #1d3ee2;
-      }
-
-      .cart ul {
+      /* Cart Styling */
+      #cartItems {
         list-style: none;
         padding: 0;
-        max-height: 200px;
-        overflow-y: auto;
+        min-height: 50px;
+        color: var(--muted);
+        margin: 0;
+      }
+      #cartItems li {
+        padding: 0.5rem 0;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.04);
+      }
+      .cart-total-row {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 700;
+        font-size: 1.1rem;
+        padding-top: 0.5rem;
+        border-top: 2px solid rgba(255, 255, 255, 0.15);
+        margin-top: 0.5rem;
       }
 
-      .cart ul li {
-        padding: 6px 0;
-        border-bottom: 1px solid #ddd;
+      /* Main Content / Products */
+      .product-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
       }
 
-      .cart p {
-        margin-top: 10px;
+      /* Product Card Styling */
+      .product-card {
+        background: var(--card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
+          box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        position: relative;
+      }
+      .product-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(37, 117, 240, 0.6);
+        box-shadow: 0 10px 30px rgba(37, 117, 240, 0.25);
+      }
+
+      .product-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .product-card h3 {
+        font-size: 1.3rem;
         font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text);
       }
 
-      /* ===== RESPONSIVE ===== */
+      .product-card p {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--accent);
+        margin-bottom: 1rem;
+      }
+
+      .product-card button {
+        /* Primary Button Style from Home Page */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(180deg, var(--primary), var(--primary-600));
+        color: #fff;
+        border: 0;
+        padding: 0.8rem 1.4rem;
+        border-radius: 999px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(37, 117, 240, 0.3);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        cursor: pointer;
+        margin-top: auto;
+      }
+
+      .product-card button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(37, 117, 240, 0.4);
+      }
+
+      /* --- 4. Responsive Adjustments (Issue 1 Fix) --- */
+      @media (max-width: 1000px) {
+        .store-layout {
+          grid-template-columns: 1fr; /* Stack sidebar and products */
+          gap: 2rem;
+        }
+        .sidebar {
+          position: static;
+          height: auto;
+        }
+        /* Cart is HIDDEN by default on mobile */
+        .cart-box {
+          display: none;
+        }
+        /* Cart is SHOWN when is-open class is toggled */
+        .cart-box.is-open {
+          display: block;
+        }
+        .product-list {
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+      }
+
       @media (max-width: 600px) {
         header {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 10px;
+          padding: 0.8rem 1rem;
         }
-
-        .search-bar input {
-          width: 140px;
+        .store-layout {
+          padding: 1rem;
         }
-
-        .products {
-          padding: 20px;
-        }
-
-        .product img {
-          height: 150px;
+        .product-card {
+          padding: 1rem;
         }
       }
     </style>
   </head>
-
   <body>
     <header>
-      <a class="brand" href="#" aria-label="Joy Aluminum Home">
-        <span class="logo" aria-hidden="true"></span>
-        <strong class="brand-title"><span>Joy</span> Aluminum Center</strong>
+      <a class="brand" href="home-page.html">
+        <span class="logo">S</span>
+        <strong class="brand-title"><span>Joy</span> Hardware Store</strong>
       </a>
-      <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search tools..." />
-        <button class="cart-toggle" onclick="toggleCart()">🛒 View Cart</button>
-      </div>
+
+      <button class="cart-btn" onclick="toggleCart()" aria-controls="cart">
+        <span>Loading...</span>
+      </button>
     </header>
 
-    <div class="products" id="productList"></div>
+    <main class="container store-layout">
+      <aside class="sidebar">
+        <div class="filter-box">
+          <h3>Search Products</h3>
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Search for hardware or parts..."
+          />
+        </div>
 
-    <div class="cart" id="cart">
-      <h2>Your Cart</h2>
-      <ul id="cartItems"></ul>
-      <p><strong>Total:</strong> $<span id="cartTotal">0.00</span></p>
-    </div>
+        <div class="cart-box" id="cart">
+          <h3>Shopping Cart</h3>
+
+          <div class="cart-items-wrapper">
+            <ul id="cartItems">
+              <li style="color: var(--muted); padding: 0.6rem 0">
+                Cart is empty.
+              </li>
+            </ul>
+          </div>
+
+          <div class="cart-total-row">
+            <span>Total:</span>
+            <span>$<span id="cartTotal">0.00</span></span>
+          </div>
+        </div>
+      </aside>
+
+      <section>
+        <h2
+          class="page-title"
+          style="
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+          "
+        >
+          Aluminum & Glass Hardware
+        </h2>
+        <div class="product-list" id="productList"></div>
+      </section>
+    </main>
 
     <script>
       const products = [
-        { id: 1, name: "Electric Drill", price: 89.99, img: "product1.jpg" },
-        { id: 2, name: "Hammer", price: 15.5, img: "spade.webp" },
+        {
+          id: 1,
+          name: "Sliding Window Rollers",
+          price: 12.5,
+          image:
+            "https://images.unsplash.com/photo-1549247796-7c963628e8d4?auto=format&fit=crop&w=300&q=80",
+        },
+        {
+          id: 2,
+          name: "Casement Lock Handle (Black)",
+          price: 25.0,
+          image:
+            "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=300&q=80",
+        },
         {
           id: 3,
-          name: "Wrench Set",
-          price: 34.0,
-          img: "trending-tools-uk-construction.jpg",
+          name: "Glass Door Hinge (Stainless Steel)",
+          price: 45.99,
+          image:
+            "https://images.unsplash.com/photo-1554907981-d30902c6b412?auto=format&fit=crop&w=300&q=80",
         },
         {
           id: 4,
-          name: "Angle Grinder",
-          price: 99.95,
-          img: "construction-woodshop-chisel-tool.jpg",
-        },
-        { id: 5, name: "Electric Saw", price: 84.99, img: "Proff/Adobe03.png" },
-        { id: 6, name: "Pliers", price: 13.5, img: "Proff/Adobe01.png" },
-        {
-          id: 7,
-          name: "Measuring Tape",
-          price: 12.0,
-          img: "Proff/Adobe02.jpeg",
+          name: "Curtain Wall Gasket (50m)",
+          price: 110.0,
+          image:
+            "https://images.unsplash.com/photo-1621257917887-f8e1a7b3c2e1?auto=format&fit=crop&w=300&q=80",
         },
         {
-          id: 8,
-          name: "Screwdriver Set",
-          price: 24.0,
-          img: "trending-tools-uk-construction.jpg",
+          id: 5,
+          name: "Aluminum Profile (6.0m - Mill Finish)",
+          price: 85.0,
+          image:
+            "https://images.unsplash.com/photo-1607990281229-373f15c1e34c?auto=format&fit=crop&w=300&q=80",
+        },
+        {
+          id: 6,
+          name: "Silicone Sealant (Weatherproof)",
+          price: 9.5,
+          image:
+            "https://images.unsplash.com/photo-1616401025732-c74b1e56b099?auto=format&fit=crop&w=300&q=80",
         },
       ];
 
-      const cart = [];
+      let cart = [];
 
-      function displayProducts(filtered = products) {
+      document.addEventListener("DOMContentLoaded", () => {
+        renderProducts(products);
+        updateHeaderButton(); // Set initial button text/icon
+      });
+
+      // --- FIX 1: Enhanced Cart Toggle Logic ---
+      function toggleCart() {
+        const cartBox = document.getElementById("cart");
+        // Only toggle the class if we are on a smaller screen
+        if (window.innerWidth <= 1000) {
+          cartBox.classList.toggle("is-open");
+        } else {
+          // Optional desktop action: For now, do nothing on desktop
+          // as the button acts as a visual 'Checkout' link.
+        }
+      }
+
+      window.addEventListener("resize", updateHeaderButton);
+
+      function updateHeaderButton() {
+        const btn = document.querySelector(".cart-btn");
+        if (!btn) return;
+
+        if (window.innerWidth > 1000) {
+          // Desktop: Button becomes 'Checkout' and has a different icon/function
+          btn.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                <span>Checkout</span>
+            `;
+        } else {
+          // Mobile/Tablet: Button is 'View Cart' and toggles cart visibility
+          btn.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 12.06a2 2 0 0 0 2 1.94h9.72a2 2 0 0 0 2-1.94L23 6H6"></path>
+                </svg>
+                <span>View Cart</span>
+            `;
+        }
+      }
+
+      // --- Store Logic ---
+      function renderProducts(prods) {
         const list = document.getElementById("productList");
         list.innerHTML = "";
-        filtered.forEach((prod) => {
+        prods.forEach((prod) => {
           const div = document.createElement("div");
-          div.className = "product";
+          div.className = "product-card";
           div.innerHTML = `
-            <img src="${prod.img}" alt="${prod.name}">
+            <img src="${prod.image}" alt="${prod.name}" loading="lazy" />
             <h3>${prod.name}</h3>
             <p>$${prod.price.toFixed(2)}</p>
             <button onclick="addToCart(${prod.id})">Add to Cart</button>
@@ -327,6 +505,12 @@
         const cartTotal = document.getElementById("cartTotal");
         cartItems.innerHTML = "";
         let total = 0;
+
+        if (cart.length === 0) {
+          cartItems.innerHTML =
+            '<li style="color: var(--muted); padding: 0.6rem 0;">Cart is empty.</li>';
+        }
+
         cart.forEach((item) => {
           total += item.price;
           const li = document.createElement("li");
@@ -336,12 +520,6 @@
         cartTotal.textContent = total.toFixed(2);
       }
 
-      function toggleCart() {
-        const cartBox = document.getElementById("cart");
-        cartBox.style.display =
-          cartBox.style.display === "block" ? "none" : "block";
-      }
-
       document
         .getElementById("searchInput")
         .addEventListener("input", function (e) {
@@ -349,10 +527,8 @@
           const filtered = products.filter((p) =>
             p.name.toLowerCase().includes(term)
           );
-          displayProducts(filtered);
+          renderProducts(filtered);
         });
-
-      displayProducts();
     </script>
   </body>
 </html>
